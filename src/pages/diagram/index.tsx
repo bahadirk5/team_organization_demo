@@ -39,7 +39,7 @@ export default function Diagram() {
       id: `team-${team.id}`,
       type: "default",
       data: { label: team.name },
-      position: { x: index * 500, y: 0 },
+      position: { x: 300, y: index * 300 },
       style: {
         padding: "20px",
         borderRadius: "8px",
@@ -53,8 +53,8 @@ export default function Diagram() {
         type: "default",
         data: { label: `${member.name} (${member.email})` },
         position: {
-          x: memberIndex * 200,
-          y: 100,
+          x: (memberIndex - (team.members.length - 1) / 2) * 200,
+          y: 150,
         },
         parentNode: `team-${team.id}`,
         hidden: hiddenMembers.has(`team-${team.id}`),
@@ -77,6 +77,7 @@ export default function Diagram() {
         source: `team-${team.id}`,
         target: `member-${team.id}-${member.id}`,
         hidden: hiddenMembers.has(`team-${team.id}`),
+        type: "step",
       }))
     );
 
